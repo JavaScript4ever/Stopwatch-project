@@ -15,8 +15,11 @@ public class UserRateService {
         this.userRateRepository = userRateRepository;
     }
 
-    public List<UserRateEntity> setUserReview(UserRateEntity userRate){
-        userRateRepository.save(userRate);
+    public UserRateEntity setUserReview(UserRateEntity userRate){
+        return userRateRepository.save(userRate);
+    }
+
+    public List<UserRateEntity> getUserReview() {
         return userRateRepository.findAll();
     }
 }
