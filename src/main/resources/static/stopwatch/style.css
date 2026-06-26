@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Science Gothic";
+}
+.main-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.stopwatch {
+    width: 32%;
+    height: 220px;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.timer {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: white;
+    padding-top: 30px;
+}
+.control {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.control-btn {
+    width: 100px;
+    height: 40px;
+    background: none;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    transition: 0.5s;
+    cursor: default;
+}
+.control-btn:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#start-btn:disabled {
+    cursor: not-allowed;
+}
+#toRatePage {
+    transition: 0.5s;
+}
+#toRatePage:hover {
+    cursor: pointer;
+    scale: 1.07;
+    transition: 0.5s;
+}
+@media (max-width: 768px) {
+    .stopwatch {
+        width: 100%;
+        height: 250px;
+    }
+}

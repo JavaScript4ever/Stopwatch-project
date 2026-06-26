@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review page</title>
+    <link rel="icon" type="image/x-icon" href="../img/reviewicon.png">
+    <link rel="stylesheet" href="review.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <div class="title">
+            <h1>Reviews</h1>
+        </div>
+        <div class="review-sector">
+            <div class="reviews">
+
+            </div>
+            <div class="reviewer-info">
+                <div class="user-information">
+                    <div class="name-field">
+                        <label for="name">Your name:</label>
+                        <input type="text" class="name" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="stars-review">
+                        <label for="stars">How would you rate us?</label>
+                        <div class="star" id="rate-1"><img src="../img/star-unreviewed.png" alt="" class="star-img"></div>
+                        <div class="star" id="rate-2"><img src="../img/star-unreviewed.png" alt="" class="star-img"></div>
+                        <div class="star" id="rate-3"><img src="../img/star-unreviewed.png" alt="" class="star-img"></div>
+                        <div class="star" id="rate-4"><img src="../img/star-unreviewed.png" alt="" class="star-img"></div>
+                        <div class="star" id="rate-5"><img src="../img/star-unreviewed.png" alt="" class="star-img"></div>
+                    </div>
+                </div>
+                <div class="review-itself">
+                    <label for="review">Your review:</label>
+                    <div class="textarea-field">
+                        <textarea name="user-review" id="reviewField" placeholder="Enter your review"></textarea>
+                        <button type="button" class="submit-btn" id="submitReview">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="review.js"></script>
+</body>
+</html>
