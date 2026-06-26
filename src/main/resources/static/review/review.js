@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
         return response.json();
     })
     .then(data => {
-        if (data === []) {
+        if (data.length === 0) {
             reviews.innerHTML = 'No reviews yet.'
             reviews.style.fontSize = '35px'
             reviews.style.padding = '20px'
@@ -153,22 +153,26 @@ submitButton.addEventListener('click',function(){
     userName = document.querySelector('#name').value;
     userReview = document.querySelector('#reviewField').value;
 
-    fetch('/api/sendUserReview',{
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            name: userName,
-            rate: userRateIndicator,
-            review: userReview
+    if((userName === '' || /\d/.test(userName)) || userRateIndicator === 0 || userReview === '') {
+        alert('Some of the fields are empty or incorrectly filled, please try again!')
+    } else {
+        fetch('/api/sendUserReview',{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                name: userName,
+                rate: userRateIndicator,
+                review: userReview
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        location.reload()
-    })
-    .catch(error => {
-        console.error(error);
-    })
+        .then(response => response.json())
+        .then(data => {
+            location.reload()
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
 })
