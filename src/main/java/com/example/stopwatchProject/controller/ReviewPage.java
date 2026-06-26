@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api")
@@ -22,8 +22,14 @@ public class ReviewPage {
     }
 
     @PostMapping("/sendUserReview")
-    public List<UserRateEntity> sendUserReview(@RequestBody UserRateEntity userRate) {
+    public UserRateEntity sendUserReview(@RequestBody UserRateEntity userRate) {
         return userRateService.setUserReview(userRate);
+    }
+
+    @GetMapping("/getUserReviews")
+    public List<UserRateEntity> getUserReviews(@RequestBody UserRateEntity userRate) {
+        return userRateService.getUserReview();
     }
     
 }
+
