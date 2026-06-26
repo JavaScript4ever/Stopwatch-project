@@ -27,9 +27,7 @@ public class ReviewPage {
     }
 
     @GetMapping("/getUserReviews")
-    public List<UserRateEntity> getUserReviews(@RequestBody UserRateEntity userRate) {
+    public List<UserRateEntity> getUserReviews() {
         return userRateService.getUserReview();
     }
-    
 }
-
