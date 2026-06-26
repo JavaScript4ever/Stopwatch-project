@@ -7,85 +7,93 @@ const submitButton = document.querySelector('#submitReview');
 let userRateIndicator = 0;
 
 document.addEventListener('DOMContentLoaded',function(){
-    let parsedReviews = JSON.parse(localStorage.getItem('Reviews'));
-    if (parsedReviews === null) {
-        reviews.innerHTML = 'No reviews yet.'
-        reviews.style.fontSize = '35px'
-        reviews.style.padding = '20px'
-    } else {
-        parsedReviews.forEach(e => {
-            let review = document.createElement('div');
-            review.classList.add('user-review')
-            let userInfo = document.createElement('div');
-            switch(Number(e.rate)) {
-                case 1:
-                    review.innerHTML = `<div class="user-info">
-                        ${e.name} | <div class="stars">
-                                        <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                    </div>
-                    </div>
-                    <div class="user-review-text">
-                        ${e.review}
-                    </div>`
-                    reviews.append(review);
-                    break;
-                case 2:
-                    review.innerHTML = `<div class="user-info">
-                        ${e.name} | <div class="stars">
-                                        <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                    </div>
-                    </div>
-                    <div class="user-review-text">
-                        ${e.review}
-                    </div>`
-                    reviews.append(review);
-                    break;
-                case 3:
-                    review.innerHTML = `<div class="user-info">
-                        ${e.name} | <div class="stars">
-                                        <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                    </div>
-                    </div>
-                    <div class="user-review-text">
-                        ${e.review}
-                    </div>`
-                    reviews.append(review);
-                    break;
-                case 4:
-                    review.innerHTML = `<div class="user-info">
-                        ${e.name} | <div class="stars">
-                                        <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-4"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                    </div>
-                    </div>
-                    <div class="user-review-text">
-                        ${e.review}
-                    </div>`
-                    reviews.append(review);
-                    break;
-                case 5:
-                    review.innerHTML = `<div class="user-info">
-                        ${e.name} | <div class="stars">
-                                        <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-4"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                        <div class="starR" id="rate-5"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
-                                    </div>
-                    </div>
-                    <div class="user-review-text">
-                        ${e.review}
-                    </div>`
-                    reviews.append(review);
-                    break;
-            }
-        });
-    }
+    fetch('/api/getUserReviews')
+    .then(response => {
+        if(!response.ok){
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data === []) {
+            reviews.innerHTML = 'No reviews yet.'
+            reviews.style.fontSize = '35px'
+            reviews.style.padding = '20px'
+        } else {
+            data.forEach(e => {
+                let review = document.createElement('div');
+                review.classList.add('user-review')
+                let userInfo = document.createElement('div');
+                switch(Number(e.rate)) {
+                    case 1:
+                        review.innerHTML = `<div class="user-info">
+                            ${e.name} | <div class="stars">
+                                            <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                        </div>
+                        </div>
+                        <div class="user-review-text">
+                            ${e.review}
+                        </div>`
+                        reviews.append(review);
+                        break;
+                    case 2:
+                        review.innerHTML = `<div class="user-info">
+                            ${e.name} | <div class="stars">
+                                            <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                        </div>
+                        </div>
+                        <div class="user-review-text">
+                            ${e.review}
+                        </div>`
+                        reviews.append(review);
+                        break;
+                    case 3:
+                        review.innerHTML = `<div class="user-info">
+                            ${e.name} | <div class="stars">
+                                            <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                        </div>
+                        </div>
+                        <div class="user-review-text">
+                            ${e.review}
+                        </div>`
+                        reviews.append(review);
+                        break;
+                    case 4:
+                        review.innerHTML = `<div class="user-info">
+                            ${e.name} | <div class="stars">
+                                            <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-4"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                        </div>
+                        </div>
+                        <div class="user-review-text">
+                            ${e.review}
+                        </div>`
+                        reviews.append(review);
+                        break;
+                    case 5:
+                        review.innerHTML = `<div class="user-info">
+                            ${e.name} | <div class="stars">
+                                            <div class="starR" id="rate-1"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-2"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-3"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-4"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                            <div class="starR" id="rate-5"><img src="../img/star-reviewed.png" alt="" class="star-img"></div>
+                                        </div>
+                        </div>
+                        <div class="user-review-text">
+                            ${e.review}
+                        </div>`
+                        reviews.append(review);
+                        break;
+                }
+            });
+        }
+    })
 })
 
 userRates.forEach((userRate,index) => {
@@ -158,7 +166,6 @@ submitButton.addEventListener('click',function(){
     })
     .then(response => response.json())
     .then(data => {
-        localStorage.setItem('Reviews',JSON.stringify(data));
         location.reload()
     })
     .catch(error => {
